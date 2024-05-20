@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LocationModule } from './modules/location/location.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             : null,
       },
     }),
+    LocationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

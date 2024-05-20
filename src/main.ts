@@ -17,6 +17,12 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: 'http://localhost:4200', // Permitir solo este origen
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   await app.listen(parseInt(process.env.APP_PORT) || 3000);
   logger.log(`Application is running on port: ${process.env.APP_PORT}`);
 }
