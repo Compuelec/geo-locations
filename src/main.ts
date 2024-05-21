@@ -18,7 +18,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: 'http://localhost:4200', // Permitir solo este origen
+    origin: ['http://localhost:4200', 'http://dev.worky.cl'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
