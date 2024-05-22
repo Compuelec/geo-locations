@@ -11,12 +11,12 @@ export class LocationController {
     return this.locationService.createLocation(createLocationDto);
   }
 
-  @Get()
+  @Get('all')
   async findAll(): Promise<any> {
     return this.locationService.getAllLocations();
   }
 
-  @Get('lat/:lat/lng/:lng')
+  @Get('/:lat/:lng')
   async findLocationByLatAndLng(
     @Param('lat') lat: number,
     @Param('lng') lng: number,
@@ -24,7 +24,7 @@ export class LocationController {
     return this.locationService.findLocationByLatAndLng(lat, lng);
   }
 
-  @Get(':id')
+  @Get('id/:id')
   async findOne(@Param('id') id: number): Promise<any> {
     return this.locationService.getLocationById(id);
   }

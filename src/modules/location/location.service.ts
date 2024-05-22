@@ -27,7 +27,7 @@ export class LocationService {
   }
 
   async findLocationByLatAndLng(lat: number, lng: number): Promise<Location> {
-    const epsilon = 0.000001; // Define un margen de error pequeño
+    const epsilon = 0.001; // Define un margen de error pequeño
 
     const location = await this.locationRepository
       .createQueryBuilder('location')
@@ -36,7 +36,7 @@ export class LocationService {
       .getOne();
 
     if (!location) {
-      throw new Error(`Location with lat ${lat} and lng ${lng} not found`);
+      return null;
     }
 
     return location;
