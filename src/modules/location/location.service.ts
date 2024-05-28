@@ -27,7 +27,7 @@ export class LocationService {
   }
 
   async findLocationByLatAndLng(lat: number, lng: number): Promise<Location> {
-    const epsilon = 0.001; // Define un margen de error pequeño
+    const epsilon = 0.001;
 
     const location = await this.locationRepository
       .createQueryBuilder('location')
@@ -40,6 +40,21 @@ export class LocationService {
     }
 
     return location;
+  }
+
+  async findLocation(location: string): Promise<Location[]> {
+    const locations = await this.locationRepository
+      .createQueryBuilder('location')
+      .where('location.formatted ILIKE :location', {
+        location: `%${location}%`,
+      })
+      .getMany();
+
+    if (!locations.length) {
+      return [];
+    }
+
+    return locations;
   }
 
   async getAllLocations(): Promise<any> {

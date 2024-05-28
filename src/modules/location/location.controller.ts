@@ -24,6 +24,11 @@ export class LocationController {
     return this.locationService.findLocationByLatAndLng(lat, lng);
   }
 
+  @Get(':location')
+  async findLocation(@Param('location') location: string): Promise<any> {
+    return this.locationService.findLocation(location);
+  }
+
   @Get('id/:id')
   async findOne(@Param('id') id: number): Promise<any> {
     return this.locationService.getLocationById(id);
