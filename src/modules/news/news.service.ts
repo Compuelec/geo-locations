@@ -25,9 +25,13 @@ export class NewsService {
       await this.create({
         ...article,
         keywords: article.keywords || '',
+        description: article.description || '',
         creator: article.creator || '',
+        source_icon: article.source_icon || '',
       });
     }
+
+    return newsData;
   }
 
   async create(newsData: Partial<News>): Promise<News> {
