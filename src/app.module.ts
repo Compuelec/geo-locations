@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LocationModule } from './modules/location/location.module';
 import { WeatherModule } from './modules/weather/weather.module';
+import { NewsModule } from './modules/news/news.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { WeatherModule } from './modules/weather/weather.module';
     }),
     LocationModule,
     WeatherModule,
+    NewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,6 +8,7 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
+      - TOKEN_NEWS_API=${TOKEN_NEWS_API}
     volumes:
       - ./postgres-geoDB:/var/lib/postgresql/data
     ports:
