@@ -28,6 +28,7 @@ export class NewsService {
         description: article.description || '',
         creator: article.creator || '',
         source_icon: article.source_icon || '',
+        image_url: article.image_url || '',
       });
     }
 
