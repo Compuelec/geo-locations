@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { News } from './entities/news.entity';
 import { lastValueFrom } from 'rxjs';
+import axiosRetry from 'axios-retry';
 
 @Injectable()
 export class NewsService {
@@ -11,7 +12,19 @@ export class NewsService {
     @InjectRepository(News)
     private newsRepository: Repository<News>,
     private httpService: HttpService,
-  ) {}
+  ) {
+    // Configurar reintentos para Axios
+    axiosRetry(this.httpService.axiosRef, {
+      retries: 3, // Número de reintentos
+      retryDelay: (retryCount) => {
+        return retryCount * 2000; // Retraso de 1 segundo por reintento
+      },
+      retryCondition: (error) => {
+        // Reintentar solo en errores de límite de tasa
+        return error.response && error.response.status === 429;
+      },
+    });
+  }
 
   async fetchAndSaveNews(): Promise<void> {
     const response = await lastValueFrom(
