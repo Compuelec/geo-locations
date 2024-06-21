@@ -62,11 +62,11 @@ export class LocationService {
     return locations;
   }
 
-  async getLocationById(id: number): Promise<any> {
-    const location = await this.locationRepository.findOne({ where: { id } });
+  async getLocationById(_id: string): Promise<any> {
+    const location = await this.locationRepository.findOne({ where: { _id } });
 
     if (!location) {
-      throw new Error(`Location with id ${id} not found`);
+      throw new Error(`Location with id ${_id} not found`);
     }
     return location;
   }

@@ -29,8 +29,8 @@ export class LocationController {
     return this.locationService.findLocation(location);
   }
 
-  @Get('id/:id')
-  async findOne(@Param('id') id: number): Promise<any> {
-    return this.locationService.getLocationById(id);
+  @Get('_id/:_id')
+  async findOne(@Param('_id') _id: string): Promise<any> {
+    return this.locationService.getLocationById(_id);
   }
 }
