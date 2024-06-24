@@ -20,7 +20,7 @@ export class LocationService {
     });
 
     if (location) {
-      throw new Error(`Location with lat ${lat} and lng ${lng} already exists`);
+      return '';
     }
 
     return this.locationRepository.save(createLocationDto);
