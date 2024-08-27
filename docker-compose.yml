@@ -1,21 +1,22 @@
 version: "3"
 services:
   db:
-    container_name: postgresDB
+    container_name: postgres-geoDB
     image: postgres:15.1
     restart: always
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
+      - TOKEN_NEWS_API=${TOKEN_NEWS_API}
     volumes:
-      - ./postgres-db:/var/lib/postgresql/data
+      - ./postgres-geoDB:/var/lib/postgresql/data
     ports:
       - ${DB_PORT}:5432
   pgAdmin:
     depends_on:
       - db
-    container_name: pgAdmin
+    container_name: pgAdmin-geo
     image: dpage/pgadmin4:6.17
     restart: always
     ports:
@@ -27,6 +28,6 @@ services:
       - ./pgadmin-data:/var/lib/pgadmin
 
 volumes:
-  postgres-db:
+  postgres-geoDB:
     external: false
     

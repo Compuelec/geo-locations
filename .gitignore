@@ -46,6 +46,10 @@ lerna-debug.log*
 .temp
 .tmp
 
+# docker directory
+/pgadmin-data
+/postgres-geoDB
+
 # Runtime data
 pids
 *.pid
